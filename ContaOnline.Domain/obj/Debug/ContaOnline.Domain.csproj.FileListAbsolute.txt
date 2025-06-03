@@ -1,0 +1,6 @@
+D:\Victor\Estudos\Impacta\ContaOnline\ContaOnline.Domain\bin\Debug\ContaOnline.Domain.dll
+D:\Victor\Estudos\Impacta\ContaOnline\ContaOnline.Domain\bin\Debug\ContaOnline.Domain.pdb
+D:\Victor\Estudos\Impacta\ContaOnline\ContaOnline.Domain\obj\Debug\ContaOnline.Domain.csproj.AssemblyReference.cache
+D:\Victor\Estudos\Impacta\ContaOnline\ContaOnline.Domain\obj\Debug\ContaOnline.Domain.csproj.CoreCompileInputs.cache
+D:\Victor\Estudos\Impacta\ContaOnline\ContaOnline.Domain\obj\Debug\ContaOnline.Domain.dll
+D:\Victor\Estudos\Impacta\ContaOnline\ContaOnline.Domain\obj\Debug\ContaOnline.Domain.pdb
