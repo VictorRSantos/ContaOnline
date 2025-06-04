@@ -2,7 +2,7 @@
 
 namespace ContaOnline.Domain.Interfaces
 {
-    internal interface IContaCorrenteRepository : IRepository<ContaCorrente>
+    public interface IContaCorrenteRepository : IRepository<ContaCorrente>
     {
     }
 }
