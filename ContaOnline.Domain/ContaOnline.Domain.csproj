@@ -36,7 +36,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IContaCategoriaRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUsuarioRepository.cs" />
     <Compile Include="Models\ContaCategoria.cs" />
+    <Compile Include="Models\ContaCorrente.cs" />
+    <Compile Include="Models\Contato.cs" />
+    <Compile Include="Models\Empresa.cs" />
+    <Compile Include="Models\PagarReceber.cs" />
+    <Compile Include="Models\Pessoa.cs" />
+    <Compile Include="Models\PessoaFisicaJuridica.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
