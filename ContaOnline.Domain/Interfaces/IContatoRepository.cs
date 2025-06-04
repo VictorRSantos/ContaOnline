@@ -2,8 +2,7 @@
 
 namespace ContaOnline.Domain.Interfaces
 {
-    public interface IContaCategoriaRepository : IRepository<ContaCategoria>
+    public interface IContatoRepository : IRepository<Contato>
     {
-
     }
 }

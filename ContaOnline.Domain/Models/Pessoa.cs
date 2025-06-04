@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ContaOnline.Domain.Models
+﻿namespace ContaOnline.Domain.Models
 {
     public class Pessoa : Contato
     {

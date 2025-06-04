@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ContaOnline.Domain.Interfaces
+﻿namespace ContaOnline.Domain.Interfaces
 {
     public interface IRepository<T>
     {
