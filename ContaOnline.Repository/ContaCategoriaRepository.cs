@@ -29,5 +29,10 @@ namespace ContaOnline.Repository
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<string> Validar()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

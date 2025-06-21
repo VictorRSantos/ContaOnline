@@ -3,9 +3,9 @@ using ContaOnline.Domain.Models;
 
 namespace ContaOnline.Repository
 {
-    public class ContaCorrenteRepository : IContaCorrenteRepository
+    public class ContaRepository : IContaRepository
     {
-        public void Alterar(ContaCorrente entidade)
+        public void Alterar(Conta entidade)
         {
             throw new NotImplementedException();
         }
@@ -15,17 +15,22 @@ namespace ContaOnline.Repository
             throw new NotImplementedException();
         }
 
-        public void Incluir(ContaCorrente entidade)
+        public void Incluir(Conta entidade)
         {
             throw new NotImplementedException();
         }
 
-        public ContaCorrente ObterPorId(string id)
+        public IEnumerable<Conta> ObterPorFiltro(ContaFiltro filtro)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ContaCorrente> ObterTodos()
+        public Conta ObterPorId(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Conta> ObterTodos()
         {
             throw new NotImplementedException();
         }
