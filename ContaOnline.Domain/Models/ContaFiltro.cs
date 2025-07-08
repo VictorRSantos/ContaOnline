@@ -7,5 +7,6 @@
         public PagarReceber? Tipo { get; set; }
         public string ContaCategoriaId { get; set; }
         public string ContatoId { get; set; }
+        public string UsuarioId { get; set; }
     }
 }

@@ -1,10 +1,21 @@
 using ContaOnline.Domain.Models;
+using ContaOnline.Repository;
 
 namespace ContaOnline.Tests;
 
 [TestClass]
 public class UsuarioTest
 {
+
+    [TestMethod]
+    public void UsuarioObterTodosTest()
+    {
+        var rep = new UsuarioRepository();
+        var lista = rep.ObterTodos("1");
+    }
+
+
+
     [TestMethod]
     public void UsuarioValidarNome()
     {
@@ -22,6 +33,9 @@ public class UsuarioTest
         // Assert
         Assert.IsTrue(erros.Any());
     }
+
+
+
 
    
 }

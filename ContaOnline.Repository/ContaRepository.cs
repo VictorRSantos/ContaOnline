@@ -30,7 +30,7 @@ namespace ContaOnline.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Conta> ObterTodos()
+        public IEnumerable<Conta> ObterTodos(string usuarioId)
         {
             throw new NotImplementedException();
         }

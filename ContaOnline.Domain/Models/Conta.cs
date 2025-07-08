@@ -3,6 +3,7 @@
     public class Conta
     {
         public string Id { get; set; }
+        public string UsuarioId { get; set; }        
         public string ContaCorrenteId { get; set; }
         public PagarReceber Tipo { get; set; }
         public string CategoriaId { get; set; }

@@ -6,7 +6,7 @@
         void Alterar(T entidade);
         void Excluir(string id);
         T ObterPorId(string id);
-        IEnumerable<T> ObterTodos();
+        IEnumerable<T> ObterTodos(string usuarioId);
         IEnumerable<string> Validar();
 
     }

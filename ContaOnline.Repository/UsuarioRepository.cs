@@ -1,5 +1,7 @@
 ﻿using ContaOnline.Domain.Interfaces;
 using ContaOnline.Domain.Models;
+using Dapper;
+using MySql.Data.MySqlClient;   
 
 namespace ContaOnline.Repository
 {
@@ -30,9 +32,17 @@ namespace ContaOnline.Repository
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Usuario> ObterTodos()
+        public IEnumerable<Usuario> ObterTodos(string usuarioId)
         {
-            throw new NotImplementedException();
+            var db = new MySqlConnection();
+            db.ConnectionString = "Server=localhost;Port=3306;Database=contadb;User=root;Password=root;";
+
+            //string sql = "SELECT * FROM usuario WHERE usuarioId = @usuarioId";
+            string sql = "SELECT * FROM usuario";
+
+            var lista = db.Query<Usuario>(sql, null);
+
+            return lista;
         }
 
         public IEnumerable<string> Validar()
