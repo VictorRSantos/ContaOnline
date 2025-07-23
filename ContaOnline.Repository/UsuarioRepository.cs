@@ -34,15 +34,7 @@ namespace ContaOnline.Repository
 
         public IEnumerable<Usuario> ObterTodos(string usuarioId)
         {
-            var db = new MySqlConnection();
-            db.ConnectionString = "Server=localhost;Port=3306;Database=contadb;User=root;Password=root;";
-
-            //string sql = "SELECT * FROM usuario WHERE usuarioId = @usuarioId";
-            string sql = "SELECT * FROM usuario";
-
-            var lista = db.Query<Usuario>(sql, null);
-
-            return lista;
+            return Db.QueryColecao<Usuario>("UsuarioObterTodos", null);
         }
 
         public IEnumerable<string> Validar()
