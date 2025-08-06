@@ -7,29 +7,29 @@ namespace ContaOnline.Repository
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        public void Alterar(Usuario entidade)
+        public void Alterar(Usuario usuario)
         {
-            throw new NotImplementedException();
+           Db.Execute("UsuarioAlterar", usuario);
         }
 
         public void Excluir(string id)
         {
-            throw new NotImplementedException();
+            Db.Execute("UsuarioExcluir", new { Id = id });
         }
 
-        public void Incluir(Usuario entidade)
+        public void Incluir(Usuario usuario)
         {
-            throw new NotImplementedException();
+           Db.Execute("UsuarioIncluir", usuario);
         }
 
         public Usuario ObterPorEmailSenha(string email, string senha)
         {
-            throw new NotImplementedException();
+            return Db.QueryEntidade<Usuario>("UsuarioObterPorEmailSenha", new { Email = email, Senha = senha });
         }
 
         public Usuario ObterPorId(string id)
         {
-            throw new NotImplementedException();
+           return Db.QueryEntidade<Usuario>("UsuarioObterPorId", new { Id = id });
         }
 
         public IEnumerable<Usuario> ObterTodos(string usuarioId)
