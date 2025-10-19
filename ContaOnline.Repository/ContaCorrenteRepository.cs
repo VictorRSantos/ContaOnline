@@ -5,29 +5,29 @@ namespace ContaOnline.Repository
 {
     public class ContaCorrenteRepository : IContaCorrenteRepository
     {
-        public void Alterar(ContaCorrente entidade)
+        public void Alterar(ContaCorrente contaCorrente)
         {
-            throw new NotImplementedException();
+            Db.Execute("ContaCorrenteAlterar", contaCorrente);
         }
 
         public void Excluir(string id)
         {
-            throw new NotImplementedException();
+            Db.Execute("ContaCorrenteExcluir", new { Id = id });
         }
 
-        public void Incluir(ContaCorrente entidade)
+        public void Incluir(ContaCorrente contaCorrente)
         {
-            throw new NotImplementedException();
+            Db.Execute("ContaCorrenteIncluir", contaCorrente);
         }
 
         public ContaCorrente ObterPorId(string id)
         {
-            throw new NotImplementedException();
+            return Db.QueryEntidade<ContaCorrente>("ContaCorrenteObterPorId", new { Id = id });
         }
 
         public IEnumerable<ContaCorrente> ObterTodos(string usuarioId)
         {
-            throw new NotImplementedException();
+           return Db.QueryColecao<ContaCorrente>("ContaCorrenteObterTodos", new { UsuarioId = usuarioId });
         }
 
         public IEnumerable<string> Validar()
