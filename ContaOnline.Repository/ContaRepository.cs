@@ -1,38 +1,39 @@
 ﻿using ContaOnline.Domain.Interfaces;
 using ContaOnline.Domain.Models;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ContaOnline.Repository
 {
     public class ContaRepository : IContaRepository
     {
-        public void Alterar(Conta entidade)
+        public void Alterar(Conta conta)
         {
-            throw new NotImplementedException();
+            Db.Execute("ContaAlterar", conta);
         }
 
         public void Excluir(string id)
         {
-            throw new NotImplementedException();
+            Db.Execute("ContaExcluir", new { Id = id });
         }
 
-        public void Incluir(Conta entidade)
+        public void Incluir(Conta conta)
         {
-            throw new NotImplementedException();
+            Db.Execute("ContaIncluir", conta);
         }
 
         public IEnumerable<Conta> ObterPorFiltro(ContaFiltro filtro)
         {
-            throw new NotImplementedException();
+            return Db.QueryColecao<Conta>("ContaObterPorFiltro", filtro);
         }
 
         public Conta ObterPorId(string id)
         {
-            throw new NotImplementedException();
+            return Db.QueryEntidade<Conta>("ContaObterPorId", new { Id = id });
         }
 
         public IEnumerable<Conta> ObterTodos(string usuarioId)
         {
-            throw new NotImplementedException();
+            return Db.QueryColecao<Conta>("ContaObterTodos", new { UsuarioId = usuarioId });
         }
 
         public IEnumerable<string> Validar()
