@@ -31,7 +31,7 @@ namespace ContaOnline.Repository
             T retorno;
             using (var cn = ObterConnection())
             {
-                retorno = cn.QueryFirstOrDefault<T>(storeProcedure, param, commandType:CommandType.StoredProcedure);
+                retorno = cn.QueryFirstOrDefault<T>(storeProcedure, param, commandType: CommandType.StoredProcedure);
             }
 
             return retorno;

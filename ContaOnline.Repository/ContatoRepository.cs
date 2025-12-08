@@ -5,29 +5,29 @@ namespace ContaOnline.Repository
 {
     public class ContatoRepository : IContatoRepository
     {
-        public void Alterar(Contato entidade)
+        public void Alterar(Contato contato)
         {
-            throw new NotImplementedException();
+            Db.Execute("ContatoAlterar", contato);
         }
 
         public void Excluir(string id)
         {
-            throw new NotImplementedException();
+            Db.Execute("ContatoExcluir", new {Id = id });
         }
 
-        public void Incluir(Contato entidade)
+        public void Incluir(Contato contato)
         {
-            throw new NotImplementedException();
+            Db.Execute("ContatoIncluir", contato);
         }
 
         public Contato ObterPorId(string id)
         {
-            throw new NotImplementedException();
+            return Db.QueryEntidade<Contato>("ContatoObterPorId", new {Id = id});
         }
 
         public IEnumerable<Contato> ObterTodos(string usuarioId)
         {
-            throw new NotImplementedException();
+            return Db.QueryColecao<Contato>("ContatoObterPorId", new {usuarioId = usuarioId});
         }
 
         public IEnumerable<string> Validar()
