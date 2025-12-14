@@ -1,4 +1,5 @@
-﻿namespace ContaOnline.Domain.Models
+﻿
+namespace ContaOnline.Domain.Models
 {
     public class Usuario
     {
@@ -24,6 +25,11 @@
             }
 
             return list;
+        }
+
+        public static explicit operator Usuario(string? v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

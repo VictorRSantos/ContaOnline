@@ -1,4 +1,7 @@
-﻿using ContaOnline.UI.Web.Views;
+﻿using ContaOnline.Domain.Interfaces;
+using ContaOnline.Domain.Models;
+using ContaOnline.Repository;
+using ContaOnline.UI.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContaOnline.UI.Web.Controllers
@@ -8,7 +11,24 @@ namespace ContaOnline.UI.Web.Controllers
         public ActionResult Login()
         {
             var loginViewModel = new LoginViewModel();
-            return View();
+            return View(loginViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginViewModel loginViewModel)
+        {
+            IUsuarioRepository repositorio = AppHelper.ObterUsuarioRepository();
+            Usuario usuario = repositorio.ObterPorEmailSenha(loginViewModel.Email, loginViewModel.Senha);
+
+            if (usuario == null)
+            {
+                loginViewModel.Mensagem = "Usuário ou senha inválidos.";
+                return View(loginViewModel);
+            }
+
+            AppHelper.RegistrarUsuario(usuario);
+
+            return RedirectToAction("Inicio");
         }
         /// <summary>
         /// Tela Inicial do aplicativo.
@@ -16,6 +36,7 @@ namespace ContaOnline.UI.Web.Controllers
         /// <returns></returns>
         public IActionResult Inicio()
         {
+
             return View();
         }
 
