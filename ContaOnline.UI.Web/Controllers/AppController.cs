@@ -1,9 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ContaOnline.UI.Web.Views;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ContaOnline.UI.Web.Controllers
 {
     public class AppController : Controller
     {
+        public ActionResult Login()
+        {
+            var loginViewModel = new LoginViewModel();
+            return View();
+        }
         /// <summary>
         /// Tela Inicial do aplicativo.
         /// </summary>
