@@ -8,6 +8,7 @@ namespace ContaOnline.UI.Web.Controllers
 {
     public class AppController : Controller
     {
+       
         public ActionResult Login()
         {
             var loginViewModel = new LoginViewModel();
@@ -46,7 +47,8 @@ namespace ContaOnline.UI.Web.Controllers
         /// <returns></returns>
         public IActionResult Registro()
         {
-            return View();
+            var registro = new RegistroViewModel();
+            return View(registro);
         }
 
         /// <summary>

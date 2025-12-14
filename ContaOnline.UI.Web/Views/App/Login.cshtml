@@ -1,21 +1,34 @@
 ﻿@model ContaOnline.UI.Web.Models.LoginViewModel
 
-@{ViewData["Title"] = "Login";}
+@{
+    ViewData["Title"] = "Login";
+}
 
 <h1>Login</h1>
+<hr />
 
 <form method="post">
-    
-    <div id="mensagem">@Model.Mensagem</div>
-    
-    <label for="Email">Email</label>
-    <input type="text" id="Email" name="Email"/>
+    <div class="form-horizontal">
 
-    <label for="Senha">Senha</label>
-    <input type="password" id="Senha" name="Senha" />
+        <div class="container">
+            <div class="text-danger" id="mensagem">@Model.Mensagem</div>
+        </div>
 
-    <button type="submit">Entrar</button>
 
+        <div class="form-group">
+            <label class="control-label" for="Email">Email</label>
+            <input class="form-control" type="text" id="Email" name="Email" />
+        </div>
+
+        <div class="form-group">
+            <label class="control-label" for="Senha">Senha</label>
+            <input class="form-control" type="password" id="Senha" name="Senha" />
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-secondary" type="submit"><span class="glyphicon glyphicon-send"></span>Entrar</button>
+        </div>
+    </div>
 
 </form>
 
