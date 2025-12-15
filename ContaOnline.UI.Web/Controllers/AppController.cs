@@ -28,7 +28,7 @@ namespace ContaOnline.UI.Web.Controllers
                 return View(loginViewModel);
             }
 
-            AppHelper.RegistrarUsuario(usuario);
+            AppHelper.RegistrarUsuario(HttpContext, usuario);
 
             return RedirectToAction("Inicio");
         }
@@ -37,7 +37,10 @@ namespace ContaOnline.UI.Web.Controllers
         /// </summary>
         /// <returns></returns>
         public IActionResult Inicio()
-        {
+        {           
+            var usuario = AppHelper.ObterUsuarioLogado(HttpContext);
+            if (usuario == null)
+                return RedirectToAction("Login");
 
             return View();
         }
@@ -73,14 +76,7 @@ namespace ContaOnline.UI.Web.Controllers
             }
 
             if (ModelState.IsValid)
-            {
-                //IUsuarioRepository repositorio = AppHelper.ObterUsuarioRepository();
-                //Usuario usuarioExistente = repositorio.ObterPorEmailSenha(registro.Email);
-                //if (usuarioExistente != null)
-                //{
-                //    ModelState.AddModelError("Email", "Já existe um usuário cadastrado com este email.");
-                //    return View(registro);
-                //}
+            {               
 
                 var usuarioRepositorio = AppHelper.ObterUsuarioRepository();
                 var novoUsuario = new Usuario
@@ -92,7 +88,7 @@ namespace ContaOnline.UI.Web.Controllers
                 };
 
                 usuarioRepositorio.Incluir(novoUsuario);
-                AppHelper.RegistrarUsuario(novoUsuario);
+                AppHelper.RegistrarUsuario(HttpContext, novoUsuario);
 
                 return RedirectToAction("Inicio");
             }

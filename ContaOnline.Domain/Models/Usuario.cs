@@ -27,9 +27,6 @@ namespace ContaOnline.Domain.Models
             return list;
         }
 
-        public static explicit operator Usuario(string? v)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

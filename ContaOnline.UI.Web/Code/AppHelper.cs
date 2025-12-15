@@ -11,16 +11,22 @@ namespace ContaOnline.UI.Web
         public static void Configure(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
-        }      
-
-        public static void RegistrarUsuario(Usuario usuario)
-        {
-            _httpContextAccessor?.HttpContext?.Session.SetString("usuario", usuario.Email);            
         }
 
-        public static Usuario? ObterUsuarioLogado()
+        public static void RegistrarUsuario(HttpContext httpContext, Usuario usuario)
         {
-            return (Usuario)_httpContextAccessor?.HttpContext?.Session.GetString("usuario");
+            httpContext.Session.SetString("usuario", usuario.Email);
+        }
+
+        public static Usuario? ObterUsuarioLogado(HttpContext httpContext)
+        {
+            var usuario = httpContext.Session.GetString("usuario");
+            if (string.IsNullOrEmpty(usuario))
+            {
+                return null;
+            }
+            
+            return new Usuario { Email = usuario };
         }
 
         public static UsuarioRepository ObterUsuarioRepository()
