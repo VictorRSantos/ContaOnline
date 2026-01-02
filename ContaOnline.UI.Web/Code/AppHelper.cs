@@ -1,6 +1,8 @@
 ﻿using ContaOnline.Domain.Models;
 using ContaOnline.Repository;
 using Microsoft.AspNetCore.Http;
+using System.Drawing.Printing;
+using System.Security.Claims;
 namespace ContaOnline.UI.Web
 {
     public static class AppHelper
@@ -18,15 +20,43 @@ namespace ContaOnline.UI.Web
             httpContext.Session.SetString("usuario", usuario.Email);
         }
 
-        public static Usuario? ObterUsuarioLogado(HttpContext httpContext)
+        public static ContaRepository ObterContaRepository()
         {
-            var usuario = httpContext.Session.GetString("usuario");
-            if (string.IsNullOrEmpty(usuario))
-            {
+            return new ContaRepository();
+        }
+
+        public static ContatoRepository ObterContatoRepository()
+        {
+            return new ContatoRepository();
+        }
+
+        public static ContaCategoriaRepository ObterContaCategoriaRepository()
+        {
+            return new ContaCategoriaRepository();
+        }
+
+        public static ContaCorrenteRepository ObterContaCorrenteRepository()
+        {
+            return new ContaCorrenteRepository();
+        }
+
+        public static Usuario? ObterUsuarioLogado(ClaimsPrincipal principal)
+        {
+            // Busca cada informação pela sua respectiva Claim
+            var id = principal.FindFirstValue(ClaimTypes.NameIdentifier);
+            var email = principal.FindFirstValue(ClaimTypes.Email);
+            var nome = principal.FindFirstValue(ClaimTypes.Name);
+
+            // Se não houver ID ou Email, consideramos que não há usuário válido
+            if (string.IsNullOrWhiteSpace(email))
                 return null;
-            }
-            
-            return new Usuario { Email = usuario };
+
+            return new Usuario
+            {
+                Id = id,
+                Email = email,
+                Nome = nome
+            };
         }
 
         public static UsuarioRepository ObterUsuarioRepository()

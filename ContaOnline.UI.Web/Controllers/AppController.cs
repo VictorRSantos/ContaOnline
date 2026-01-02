@@ -1,9 +1,9 @@
 ﻿using ContaOnline.Domain.Interfaces;
 using ContaOnline.Domain.Models;
-using ContaOnline.Repository;
 using ContaOnline.UI.Web.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Protocol.Core.Types;
 
 namespace ContaOnline.UI.Web.Controllers
 {
@@ -17,7 +17,7 @@ namespace ContaOnline.UI.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel loginViewModel)
+        public async Task<ActionResult> Login(LoginViewModel loginViewModel)
         {
             IUsuarioRepository repositorio = AppHelper.ObterUsuarioRepository();
             Usuario usuario = repositorio.ObterPorEmailSenha(loginViewModel.Email, loginViewModel.Senha);
@@ -27,6 +27,19 @@ namespace ContaOnline.UI.Web.Controllers
                 loginViewModel.Mensagem = "Usuário ou senha inválidos.";
                 return View(loginViewModel);
             }
+
+            var claims = new List<System.Security.Claims.Claim>
+            {
+                new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Name, usuario.Nome),
+                new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Email, usuario.Email),
+                new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.NameIdentifier, usuario.Id)
+            };
+
+            var claimsIdentity = new System.Security.Claims.ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new System.Security.Claims.ClaimsPrincipal(claimsIdentity));
 
             AppHelper.RegistrarUsuario(HttpContext, usuario);
 
@@ -38,7 +51,7 @@ namespace ContaOnline.UI.Web.Controllers
         /// <returns></returns>
         public IActionResult Inicio()
         {           
-            var usuario = AppHelper.ObterUsuarioLogado(HttpContext);
+            var usuario = AppHelper.ObterUsuarioLogado(User);
             if (usuario == null)
                 return RedirectToAction("Login");
 
