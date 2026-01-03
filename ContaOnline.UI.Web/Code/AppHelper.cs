@@ -1,7 +1,5 @@
 ﻿using ContaOnline.Domain.Models;
 using ContaOnline.Repository;
-using Microsoft.AspNetCore.Http;
-using System.Drawing.Printing;
 using System.Security.Claims;
 namespace ContaOnline.UI.Web
 {

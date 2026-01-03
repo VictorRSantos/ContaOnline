@@ -14,6 +14,41 @@ namespace ContaOnline.UI.Web.Controllers
         }
 
         [HttpPost]
+        public IActionResult Excluir(ContaCorrente contaCorrente)
+        {
+            repositorio.Excluir(contaCorrente.Id);
+            return RedirectToAction("Inicio");
+        }
+
+        public IActionResult Excluir(string id)
+        {
+            var contaCorrente = repositorio.ObterPorId(id);
+            return View(contaCorrente);
+        }
+
+        [HttpPost]
+        public IActionResult Alterar(ContaCorrente contaCorrente)
+        {
+            if (string.IsNullOrWhiteSpace(contaCorrente.Descricao))
+            {
+                ModelState.AddModelError("Descricao", "A descrição é obrigatória.");
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(contaCorrente);
+            }
+            repositorio.Alterar(contaCorrente);
+            return RedirectToAction("Inicio");
+        }
+
+        public IActionResult Alterar(string id)
+        {
+            var contaCorrente = repositorio.ObterPorId(id);
+
+            return View(contaCorrente);
+        }
+
+        [HttpPost]
         public IActionResult Incluir(ContaCorrente contaCorrente)
         {
 
@@ -40,26 +75,6 @@ namespace ContaOnline.UI.Web.Controllers
 
         public IActionResult Incluir()
         {
-
-            //var usuario = AppHelper.ObterUsuarioLogado(User);
-            //if (usuario == null) return RedirectToAction("Login", "App");
-            //ContaCorrente contaCorrente;
-            //if (string.IsNullOrEmpty(id))
-            //{
-            //    contaCorrente = new ContaCorrente
-            //    {
-            //        UsuarioId = usuario.Id
-            //    };
-            //}
-            //else
-            //{
-            //    contaCorrente = repositorio.ObterPorId(id);
-            //    if (contaCorrente == null || contaCorrente.UsuarioId != usuario.Id)
-            //    {
-            //        return RedirectToAction("Inicio");
-            //    }
-            //}
-
             var contaCorrente = new ContaCorrente();
 
             return View(contaCorrente);
