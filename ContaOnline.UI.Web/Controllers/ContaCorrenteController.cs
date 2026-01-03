@@ -14,9 +14,9 @@ namespace ContaOnline.UI.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Excluir(ContaCorrente contaCorrente)
+        public IActionResult Excluir(string id, IFormCollection form)
         {
-            repositorio.Excluir(contaCorrente.Id);
+            repositorio.Excluir(id);
             return RedirectToAction("Inicio");
         }
 
