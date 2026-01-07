@@ -27,7 +27,7 @@ namespace ContaOnline.Repository
 
         public IEnumerable<Contato> ObterTodos(string usuarioId)
         {
-            return Db.QueryColecao<Contato>("ContatoObterPorId", new {usuarioId = usuarioId});
+            return Db.QueryColecao<Contato>("ContatoObterTodos", new {usuarioId = usuarioId});
         }
 
         public IEnumerable<string> Validar()
