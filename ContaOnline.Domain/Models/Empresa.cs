@@ -2,6 +2,6 @@
 {
     public class Empresa : Contato
     {
-        public string CNPJ { get; set; }
+        public string? CNPJ { get; set; } = string.Empty;
     }
 }

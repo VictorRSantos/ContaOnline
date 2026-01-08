@@ -2,8 +2,8 @@
 {
     public class Pessoa : Contato
     {
-        public string CPF { get; set; }
-        public string RG { get; set; }
+        public string CPF { get; set; } = string.Empty;
+        public string RG { get; set; } = string.Empty;
         public DateTime? DataNascimento { get; set; }
     }
 }

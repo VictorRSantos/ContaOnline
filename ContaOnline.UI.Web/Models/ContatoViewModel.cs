@@ -9,9 +9,9 @@ namespace ContaOnline.UI.Web.Models
         public string? Telefone { get; set; }
         public string? Email { get; set; }
         public PessoaFisicaJuridica Tipo { get; set; }
-        public string? CNPJ { get; set; }
-        public string? CPF { get; set; }
-        public string? RG { get; set; }
+        public string? CNPJ { get; set; } = string.Empty;
+        public string? CPF { get; set; } = string.Empty;
+        public string? RG { get; set; } = string.Empty;
         public DateTime? DataNascimento { get; set; }
 
     }

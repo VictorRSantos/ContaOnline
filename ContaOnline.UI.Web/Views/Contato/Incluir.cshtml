@@ -30,8 +30,8 @@
             <div class="form-group">
                 <label asp-for="Tipo" class="control-label"></label>
                 <select id="Tipo" name="Tipo" class="form-control">
-                    <option value="Fisica">Pessoa Física</option>
-                    <option value="Juridica">Pessoa Jurídica</option>
+                    <option value="1">Pessoa Física</option>
+                    <option value="2">Pessoa Jurídica</option>
                 </select>
                 <span asp-validation-for="Tipo" class="text-danger"></span>
             </div>
@@ -56,7 +56,7 @@
                     <span asp-validation-for="RG" class="text-danger"></span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" id="dataNascimento">
                 <label asp-for="DataNascimento" class="control-label">Nascido em</label>
                 <input asp-for="DataNascimento" class="form-control" />
                 <span asp-validation-for="DataNascimento" class="text-danger"></span>
@@ -75,32 +75,34 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
-        // document.getElementById("Tipo").addEventListener("change", function () {
-        //     var tipo = this.value;
-        //     var pessoaFisicaContainer = document.getElementById("pessoaFisicaContainer");
-        //     var pessoaJuricaContainer = document.getElementById("pessoaJuricaContainer");
-        //     if (tipo === "Fisica") {
-        //         pessoaFisicaContainer.style.display = "block";
-        //         pessoaJuricaContainer.style.display = "none";
-        //     } else if (tipo === "Juridica") {
-        //         pessoaFisicaContainer.style.display = "none";
-        //         pessoaJuricaContainer.style.display = "block";
-        //     }
-        // });
-        // // Trigger change event on page load to set the correct visibility
-        // document.getElementById("Tipo").dispatchEvent(new Event('change'));
-        $(function (){
-            $('#Tipo').change(function (){
-                var tipo = $(this).val();
-                if (tipo === "Fisica"){
-                    $('#pessoaFisicaContainer').show();
-                    $('#pessoaJuricaContainer').hide();
-                } else if (tipo === "Juridica"){
-                    $('#pessoaFisicaContainer').hide();
-                    $('#pessoaJuricaContainer').show();
-                }
-            });
-        })
+        document.getElementById("Tipo").addEventListener("change", function () {
+            var tipo = this.value;
+            var pessoaFisicaContainer = document.getElementById("pessoaFisicaContainer");
+            var pessoaJuricaContainer = document.getElementById("pessoaJuricaContainer");
+            var dataNascimento = document.getElementById("dataNascimento");
+            if (tipo === "1") {
+                pessoaFisicaContainer.style.display = "block";
+                pessoaJuricaContainer.style.display = "none";
+            } else if (tipo === "2") {
+                pessoaFisicaContainer.style.display = "none";
+                pessoaJuricaContainer.style.display = "block";
+                dataNascimento.style.display = "none";
+            }
+        });
+        // Trigger change event on page load to set the correct visibility
+        document.getElementById("Tipo").dispatchEvent(new Event('change'));
+        // $(function (){
+        //     $('#Tipo').change(function (){
+        //         var tipo = $(this).val();
+        //         if (tipo === "Fisica"){
+        //             $('#pessoaFisicaContainer').show();
+        //             $('#pessoaJuricaContainer').hide();
+        //         } else if (tipo === "Juridica"){
+        //             $('#pessoaFisicaContainer').hide();
+        //             $('#pessoaJuricaContainer').show();
+        //         }
+        //     });
+        // })
     </script>
 }
 
