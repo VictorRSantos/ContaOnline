@@ -72,3 +72,35 @@
     <a asp-action="Inicio">Voltar</a>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        // document.getElementById("Tipo").addEventListener("change", function () {
+        //     var tipo = this.value;
+        //     var pessoaFisicaContainer = document.getElementById("pessoaFisicaContainer");
+        //     var pessoaJuricaContainer = document.getElementById("pessoaJuricaContainer");
+        //     if (tipo === "Fisica") {
+        //         pessoaFisicaContainer.style.display = "block";
+        //         pessoaJuricaContainer.style.display = "none";
+        //     } else if (tipo === "Juridica") {
+        //         pessoaFisicaContainer.style.display = "none";
+        //         pessoaJuricaContainer.style.display = "block";
+        //     }
+        // });
+        // // Trigger change event on page load to set the correct visibility
+        // document.getElementById("Tipo").dispatchEvent(new Event('change'));
+        $(function (){
+            $('#Tipo').change(function (){
+                var tipo = $(this).val();
+                if (tipo === "Fisica"){
+                    $('#pessoaFisicaContainer').show();
+                    $('#pessoaJuricaContainer').hide();
+                } else if (tipo === "Juridica"){
+                    $('#pessoaFisicaContainer').hide();
+                    $('#pessoaJuricaContainer').show();
+                }
+            });
+        })
+    </script>
+}
+
