@@ -4,6 +4,7 @@ using ContaOnline.UI.Web.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using NuGet.Protocol.Core.Types;
 
 namespace ContaOnline.UI.Web.Controllers
 {
@@ -57,35 +58,7 @@ namespace ContaOnline.UI.Web.Controllers
                         CNPJ = contatoViewModel.CNPJ ?? string.Empty
                     };
 
-                    //if (contatoViewModel.Tipo == PessoaFisicaJuridica.PessoaFisica)
-                    //{
-                    //    contato = new Pessoa
-                    //    {
-                    //        RG = contatoViewModel.RG ?? string.Empty,
-                    //        CPF = contatoViewModel.CPF ?? string.Empty,
-                    //        DataNascimento = contatoViewModel.DataNascimento
-                    //    };
-
-
-                    //}
-                    //else if (contatoViewModel.Tipo == PessoaFisicaJuridica.PessoaJuridica)
-                    //{
-                    //    contato = new Empresa
-                    //    {
-                    //        CNPJ = contatoViewModel.CNPJ ?? string.Empty
-                    //    };
-                    //}
-
-                    //_usuarioLogado = ObterUsuarioLogado();
-                    //contato.Id = Guid.NewGuid().ToString();
-                    //contato.UsuarioId = _usuarioLogado?.Id;
-                    //contato.Nome = contatoViewModel.Nome;
-                    //contato.Email = contatoViewModel.Email;
-                    //contato.Telefone = contatoViewModel.Telefone;
-                    //contato.Tipo = contatoViewModel.Tipo;
-
                     _contatoRepository.Incluir(contato);
-
 
                 }
                 return RedirectToAction(nameof(Inicio));
@@ -97,19 +70,46 @@ namespace ContaOnline.UI.Web.Controllers
         }
 
         // GET: ContatosController/Edit/5
-        public ActionResult Alterar(int id)
+        public ActionResult Alterar(string id)
         {
-            return View();
+            var contato = _contatoRepository.ObterPorId(id);
+            var contatoViewModel = new ContatoViewModel()  
+            {
+                Id = contato.Id,
+                Nome = contato.Nome,
+                Email = contato.Email,
+                Telefone = contato.Telefone,
+                Tipo = contato.Tipo
+            };
+
+            if(contato is Empresa)
+            {
+                contatoViewModel.CNPJ = contato.CNPJ;
+            }
+            else
+            {
+                contatoViewModel.CPF = contato.CPF;
+                contatoViewModel.RG = contato.RG;
+                contatoViewModel.DataNascimento = contato.DataNascimento;
+            }
+
+            return View(contato);
         }
 
         // POST: ContatosController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Alterar(int id, IFormCollection collection)
+        public ActionResult Alterar(Contato contatoRequest)
         {
             try
-            {
-                return RedirectToAction(nameof(Inicio));
+            {                
+                if (!ModelState.IsValid)
+                {
+                    return View(contatoRequest);
+                }
+                _contatoRepository.Alterar(contatoRequest);
+
+                return RedirectToAction("Inicio");
             }
             catch
             {
