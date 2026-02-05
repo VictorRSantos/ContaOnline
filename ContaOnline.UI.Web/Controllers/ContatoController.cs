@@ -73,7 +73,7 @@ namespace ContaOnline.UI.Web.Controllers
         public ActionResult Alterar(string id)
         {
             var contato = _contatoRepository.ObterPorId(id);
-            var contatoViewModel = new ContatoViewModel()  
+            var contatoViewModel = new ContatoViewModel()
             {
                 Id = contato.Id,
                 Nome = contato.Nome,
@@ -82,7 +82,7 @@ namespace ContaOnline.UI.Web.Controllers
                 Tipo = contato.Tipo
             };
 
-            if(contato is Empresa)
+            if (contato is Empresa)
             {
                 contatoViewModel.CNPJ = contato.CNPJ;
             }
@@ -102,7 +102,7 @@ namespace ContaOnline.UI.Web.Controllers
         public ActionResult Alterar(Contato contatoRequest)
         {
             try
-            {                
+            {
                 if (!ModelState.IsValid)
                 {
                     return View(contatoRequest);
@@ -118,23 +118,31 @@ namespace ContaOnline.UI.Web.Controllers
         }
 
         // GET: ContatosController/Delete/5
-        public ActionResult Excluir(int id)
+        public ActionResult Excluir(string id)
         {
-            return View();
+            var contato = _contatoRepository.ObterPorId(id);
+            return View(contato);
         }
 
         // POST: ContatosController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Excluir(int id, IFormCollection collection)
+        public ActionResult Excluir(string id, Contato contato)
         {
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View(contato);
+                }
+
+                _contatoRepository.Excluir(id);
+                
                 return RedirectToAction(nameof(Inicio));
             }
             catch
             {
-                return View();
+                return View(contato);
             }
         }
 
