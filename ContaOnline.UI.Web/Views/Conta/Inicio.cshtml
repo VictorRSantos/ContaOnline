@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ContaOnline.Domain.ViewModels.ContaListItem>
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<h1>Conta</h1>
+
+<p>
+    <a asp-action="Create">Incluir</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Data)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Contato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.Data.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Contato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria)
+                </td>
+                <td>
+                    @item.Valor.ToString("c")
+                </td>
+                <td class="comando-tabela">
+                    @Html.ActionLink("Alterar", "Alterar", new {  id=item.Id }) |
+                    @Html.ActionLink("Excluir", "Excluir", new {  id=item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

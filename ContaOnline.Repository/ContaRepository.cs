@@ -1,5 +1,6 @@
 ﻿using ContaOnline.Domain.Interfaces;
 using ContaOnline.Domain.Models;
+using ContaOnline.Domain.ViewModels;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace ContaOnline.Repository
@@ -21,14 +22,14 @@ namespace ContaOnline.Repository
             Db.Execute("ContaIncluir", conta);
         }
 
-        public IEnumerable<Conta> ObterPorFiltro(ContaFiltro filtro)
-        {
-            return Db.QueryColecao<Conta>("ContaObterPorFiltro", filtro);
-        }
-
         public Conta ObterPorId(string id)
         {
             return Db.QueryEntidade<Conta>("ContaObterPorId", new { Id = id });
+        }
+
+        public IEnumerable<ContaListItem> ObterPorUsuario(string usuarioId)
+        {
+            return Db.QueryColecao<ContaListItem>("ContaObterTodos", new { UsuarioId = usuarioId });
         }
 
         public IEnumerable<Conta> ObterTodos(string usuarioId)
@@ -39,6 +40,11 @@ namespace ContaOnline.Repository
         public IEnumerable<string> Validar()
         {
             throw new NotImplementedException();
+        }
+
+        IEnumerable<ContaListItem> IContaRepository.ObterPorFiltro(ContaFiltro filtro)
+        {
+            return Db.QueryColecao<ContaListItem>("ContaObterListagemPorFiltro", filtro);
         }
     }
 }
