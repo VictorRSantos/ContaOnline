@@ -1,0 +1,93 @@
+﻿@model ContaOnline.Domain.ViewModels.ContaViewModel
+
+@{
+    ViewData["Title"] = "Alterar";
+}
+
+<h1>Alterar</h1>
+
+<h4>Dados da Conta</h4>
+<hr />
+@Html.HiddenFor(m => m.ContaInstancia.Id)
+
+<div class="row">
+    <form asp-action="Alterar">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="ContaInstancia.ContaCorrenteId" class="control-label">Conta Corrente</label>
+            @Html.DropDownListFor(model => Model.ContaInstancia.ContaCorrenteId, new SelectList(Model.ContaCorrenteList, "Id", "Descricao", Model.ContaInstancia.ContaCorrenteId), new { @class = "form-control" })
+            <span asp-validation-for="ContaInstancia.ContaCorrenteId" class="text-danger"></span>
+        </div>
+
+        @* Tipo *@
+        <div class="form-group">
+            <label class="form-label col-md-2">Tipo</label>
+            <div class="col-md-10">
+                <select id="ContaInstancia_Tipo" name="ContaInstancia.Tipo" class="form-control" style="width:100px">
+                    <option></option>
+                    <option value="1"> @if (Model.ContaInstancia.Tipo == ContaOnline.Domain.Models.PagarReceber.Pagar) { Html.Raw("selected");} Pagar</option>
+                    <option value="2"> @if (Model.ContaInstancia.Tipo == ContaOnline.Domain.Models.PagarReceber.Receber) { Html.Raw("selected");} Receber</option>
+                </select>
+            </div>
+        </div>
+
+        @* Categoria *@
+        <div class="form-group">
+            <label asp-for="ContaInstancia.CategoriaId" class="control-label">Categoria</label>
+            @Html.DropDownListFor(model => Model.ContaInstancia.CategoriaId, new SelectList(Model.ContaCategoriaList, "Id", "Nome", Model.ContaInstancia.CategoriaId), new { @class = "form-control" })
+            <span asp-validation-for="ContaInstancia.ContaCorrenteId" class="text-danger"></span>
+        </div>
+
+        @* Contato *@
+        <div class="form-group">
+            <label asp-for="ContaInstancia.ContatoId" class="control-label">Contato</label>
+            @Html.DropDownListFor(model => Model.ContaInstancia.ContatoId, new SelectList(Model.ContatoList, "Id", "Nome", Model.ContaInstancia.ContatoId), new { @class = "form-control" })
+            <span asp-validation-for="ContaInstancia.ContaCorrenteId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ContaInstancia.DataVencimento" class="control-label">Vencimento</label>
+            <input asp-for="ContaInstancia.DataVencimento" class="form-control" value="DD/MM/YYYY" />
+            <span asp-validation-for="ContaInstancia.DataVencimento" class="text-danger"></span>
+        </div>
+
+        <div class="form-group" id="valor">
+            <label asp-for="ContaInstancia.Valor" class="control-label">Valor</label>
+            <input asp-for="ContaInstancia.Valor" class="form-control" style="width:100px; text-align:center" />
+            <span asp-validation-for="ContaInstancia.Valor" class="text-danger"></span>
+        </div>
+
+        <hr />
+
+        <div class="form-group">
+            <label asp-for="ContaInstancia.DataPagamento" class="control-label">Data Pagamento</label>
+            <input asp-for="ContaInstancia.DataPagamento" class="form-control" value="DD/MM/YYYY" />
+            <span asp-validation-for="ContaInstancia.DataPagamento" class="text-danger"></span>
+        </div>
+
+        <div class="form-group" id="acrescimo">
+            <label asp-for="ContaInstancia.Acrescimo" class="control-label">Acrescimo</label>
+            <input asp-for="ContaInstancia.Acrescimo" class="form-control" style="width:100px; text-align:center" />
+            <span asp-validation-for="ContaInstancia.Acrescimo" class="text-danger"></span>
+        </div>
+
+        <div class="form-group" id="desconto">
+            <label asp-for="ContaInstancia.Desconto" class="control-label">Desconto</label>
+            <input asp-for="ContaInstancia.Desconto" class="form-control" style="width:100px; text-align:center" />
+            <span asp-validation-for="ContaInstancia.Desconto" class="text-danger"></span>
+        </div>
+
+        <div class="col-md-4">           
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <input type="submit" value="Alterar" class="btn btn-primary" />
+                </div>           
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Inicio">Inicio</a>
+</div>
+
