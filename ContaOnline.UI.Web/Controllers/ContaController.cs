@@ -88,6 +88,22 @@ namespace ContaOnline.UI.Web.Controllers
             return View(viewModel);
         }
 
+        public IActionResult Excluir(string id)
+        {
+            _usuario = AppHelper.ObterUsuarioLogado(User);
+            if (_usuario == null) return RedirectToAction("Login", "App");
+            try
+            {
+                var conta = _contaRepository.ObterExibirPorId(id);                
+                return View(conta);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("", "Ocorreu um erro ao excluir a conta. Tente novamente.");
+            }
+            return RedirectToAction("Inicio");
+        }
+
         private void PreencherViewModel(ContaViewModel viewModel)
         {
             var contaCorrenteRepository = AppHelper.ObterContaCorrenteRepository();
