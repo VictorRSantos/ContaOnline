@@ -1,6 +1,5 @@
 ﻿using ContaOnline.Domain.Interfaces;
 using ContaOnline.Domain.Models;
-using Org.BouncyCastle.Asn1.Ess;
 
 namespace ContaOnline.Repository
 {
@@ -13,7 +12,7 @@ namespace ContaOnline.Repository
 
         public void Excluir(string id)
         {
-           Db.Execute("ContaCategoriaExcluir", new { Id = id });
+            Db.Execute("ContaCategoriaExcluir", new { Id = id });
         }
 
         public void Incluir(ContaCategoria contaCategoria)

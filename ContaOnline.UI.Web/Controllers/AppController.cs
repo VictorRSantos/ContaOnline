@@ -50,7 +50,7 @@ namespace ContaOnline.UI.Web.Controllers
         /// </summary>
         /// <returns></returns>
         public IActionResult Inicio()
-        {           
+        {
             var usuario = AppHelper.ObterUsuarioLogado(User);
             if (usuario == null)
                 return RedirectToAction("Login");
@@ -89,7 +89,7 @@ namespace ContaOnline.UI.Web.Controllers
             }
 
             if (ModelState.IsValid)
-            {               
+            {
 
                 var usuarioRepositorio = AppHelper.ObterUsuarioRepository();
                 var novoUsuario = new Usuario

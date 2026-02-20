@@ -11,5 +11,7 @@ namespace ContaOnline.Domain.ViewModels
         public string Contato { get; set; } = string.Empty;
         public string Categoria { get; set; } = string.Empty;
         public decimal Valor { get; set; }
+        public string CategoriaId { get; set; }
+        public string ContaCorrenteId { get; set; }
     }
 }

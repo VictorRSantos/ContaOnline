@@ -1,7 +1,5 @@
 ﻿using ContaOnline.Domain.Interfaces;
 using ContaOnline.Domain.Models;
-using Dapper;
-using MySql.Data.MySqlClient;   
 
 namespace ContaOnline.Repository
 {
@@ -9,7 +7,7 @@ namespace ContaOnline.Repository
     {
         public void Alterar(Usuario usuario)
         {
-           Db.Execute("UsuarioAlterar", usuario);
+            Db.Execute("UsuarioAlterar", usuario);
         }
 
         public void Excluir(string id)
@@ -19,7 +17,7 @@ namespace ContaOnline.Repository
 
         public void Incluir(Usuario usuario)
         {
-           Db.Execute("UsuarioIncluir", usuario);
+            Db.Execute("UsuarioIncluir", usuario);
         }
 
         public Usuario ObterPorEmailSenha(string email, string senha)
@@ -29,7 +27,7 @@ namespace ContaOnline.Repository
 
         public Usuario ObterPorId(string id)
         {
-           return Db.QueryEntidade<Usuario>("UsuarioObterPorId", new { Id = id });
+            return Db.QueryEntidade<Usuario>("UsuarioObterPorId", new { Id = id });
         }
 
         public IEnumerable<Usuario> ObterTodos(string usuarioId)

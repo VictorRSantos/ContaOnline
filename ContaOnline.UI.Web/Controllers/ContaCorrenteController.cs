@@ -7,10 +7,10 @@ namespace ContaOnline.UI.Web.Controllers
     public class ContaCorrenteController : Controller
     {
         private IContaCorrenteRepository repositorio;
-       
+
         public ContaCorrenteController()
         {
-            repositorio = AppHelper.ObterContaCorrenteRepository();            
+            repositorio = AppHelper.ObterContaCorrenteRepository();
         }
 
         [HttpPost]
@@ -52,7 +52,7 @@ namespace ContaOnline.UI.Web.Controllers
         public IActionResult Incluir(ContaCorrente contaCorrente)
         {
 
-            
+
             if (string.IsNullOrWhiteSpace(contaCorrente.Descricao))
             {
                 ModelState.AddModelError("Descricao", "A descrição é obrigatória.");
@@ -67,7 +67,7 @@ namespace ContaOnline.UI.Web.Controllers
                 contaCorrente.UsuarioId = usuario.Id;
 
                 repositorio.Incluir(contaCorrente);
-                return RedirectToAction("Inicio");                                
+                return RedirectToAction("Inicio");
             }
 
             return View(contaCorrente);

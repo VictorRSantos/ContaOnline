@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ContaOnline.Domain.ViewModels.ContaListItem>
+﻿@model ContaOnline.Domain.ViewModels.ContaListViewModel
 
 @{
     ViewData["Title"] = "Inicio";
@@ -9,29 +9,49 @@
 <p>
     <a asp-action="Incluir">Incluir</a>
 </p>
+
+<hr />
+<form method="post" class="form-horizontal">
+    <label>Data Inicial</label>
+    @* @Html.EditorFor(m => m.Filtro.DataInicial, new { htmlAttributes = new { @class = "form-control", @Value = @Model.Filtro.DataInicial.ToString("d") } })) *@
+    <input name="Filtro.DataInicial" value="@Model.Filtro.DataInicial.ToString("d")" />
+
+    <label>Data Final</label>
+    <input name="Filtro.DataFinal" value="@Model.Filtro.DataFinal.ToString("d")" />
+
+    <label>Conta</label>
+    @Html.DropDownListFor(m => m.Filtro.ContaCorrenteId, new SelectList(Model.ContaCorrenteList, "Id", "Descricao", Model.Filtro.ContaCorrenteId), "Selecione", new { @class = "form-control" })
+
+    <label>Categoria</label>
+    @Html.DropDownListFor(m => m.Filtro.CategoriaId, new SelectList(Model.CategoriaList, "Id", "Nome", Model.Filtro.CategoriaId), "Selecione", new { @class = "form-control" })
+    
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+</form>
+<hr />
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Data)
+                Data
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descricao)
+                Descricao
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Contato)
+                Contato
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Categoria)
+                Categoria
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Valor)
+                Valor
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.ContaList)
         {
             <tr>
                 <td>

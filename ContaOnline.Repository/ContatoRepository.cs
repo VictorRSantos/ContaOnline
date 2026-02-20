@@ -12,7 +12,7 @@ namespace ContaOnline.Repository
 
         public void Excluir(string id)
         {
-            Db.Execute("ContatoExcluir", new {Id = id });
+            Db.Execute("ContatoExcluir", new { Id = id });
         }
 
         public void Incluir(Contato contato)
@@ -22,12 +22,12 @@ namespace ContaOnline.Repository
 
         public Contato ObterPorId(string id)
         {
-            return Db.QueryEntidade<Contato>("ContatoObterPorId", new {Id = id});
+            return Db.QueryEntidade<Contato>("ContatoObterPorId", new { Id = id });
         }
 
         public IEnumerable<Contato> ObterTodos(string usuarioId)
         {
-            return Db.QueryColecao<Contato>("ContatoObterTodos", new {usuarioId = usuarioId});
+            return Db.QueryColecao<Contato>("ContatoObterTodos", new { usuarioId = usuarioId });
         }
 
         public IEnumerable<string> Validar()

@@ -97,7 +97,8 @@ public class UsuarioTest
     public void UsuarioObterPorEmailSenhaTest()
     {
         // Arrange
-        var usuario = new Usuario() {
+        var usuario = new Usuario()
+        {
             Email = "testerep2@email.com",
             Senha = "123456"
         };

@@ -1,10 +1,7 @@
 ﻿using ContaOnline.Domain.Interfaces;
 using ContaOnline.Domain.Models;
 using ContaOnline.UI.Web.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
-using NuGet.Protocol.Core.Types;
 
 namespace ContaOnline.UI.Web.Controllers
 {
@@ -137,7 +134,7 @@ namespace ContaOnline.UI.Web.Controllers
                 }
 
                 _contatoRepository.Excluir(id);
-                
+
                 return RedirectToAction(nameof(Inicio));
             }
             catch

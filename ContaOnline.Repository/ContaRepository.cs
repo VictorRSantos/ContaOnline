@@ -1,7 +1,6 @@
 ﻿using ContaOnline.Domain.Interfaces;
 using ContaOnline.Domain.Models;
 using ContaOnline.Domain.ViewModels;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ContaOnline.Repository
 {
@@ -24,7 +23,7 @@ namespace ContaOnline.Repository
 
         public ContaExibirViewModel ObterExibirPorId(string id)
         {
-           return Db.QueryEntidade<ContaExibirViewModel>("ContaObterExibirPorId", new { ContaId = id });
+            return Db.QueryEntidade<ContaExibirViewModel>("ContaObterExibirPorId", new { ContaId = id });
         }
 
         public Conta ObterPorId(string id)
@@ -47,9 +46,27 @@ namespace ContaOnline.Repository
             throw new NotImplementedException();
         }
 
-        IEnumerable<ContaListItem> IContaRepository.ObterPorFiltro(ContaFiltro filtro)
+        public IEnumerable<ContaListItem> ObterPorFiltro(ContaFiltro filtro)
         {
-            return Db.QueryColecao<ContaListItem>("ContaObterListagemPorFiltro", filtro);
+            if (filtro.DataInicial == null) filtro.DataInicial = DateTime.MinValue;
+            if (filtro.DataFinal == null) filtro.DataFinal = DateTime.MaxValue;
+
+            var lista = Db.QueryColecao<ContaListItem>("ContaObterEntreDatas", new { DataInicial = filtro.DataInicial, DataFinal = filtro.DataFinal, IdUsuario = filtro.UsuarioId }).ToList();
+
+            var listaFiltrada = lista.ToList();
+            if (filtro.ContaCorrenteId != null)
+            {
+                listaFiltrada = listaFiltrada.Where(x => x.ContaCorrenteId == filtro.ContaCorrenteId).ToList();
+
+            }
+            
+            if (filtro.CategoriaId != null)
+            {
+                listaFiltrada = listaFiltrada.Where(x => x.CategoriaId == filtro.CategoriaId).ToList();
+            }
+
+            return listaFiltrada;
+
         }
     }
 }

@@ -42,15 +42,15 @@ namespace ContaOnline.Tests
         [TestMethod]
         public void ObterTodosTest()
         {
-            var lista  = _repository.ObterTodos("abc");
+            var lista = _repository.ObterTodos("abc");
         }
-        
+
 
         [TestMethod]
         public void ObterPorIdTest()
         {
             var conta = _repository.ObterPorId("1");
         }
-    
+
     }
 }

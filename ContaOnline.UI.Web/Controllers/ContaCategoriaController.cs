@@ -1,6 +1,5 @@
 ﻿using ContaOnline.Domain.Interfaces;
 using ContaOnline.Domain.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ContaOnline.UI.Web.Controllers
@@ -12,7 +11,7 @@ namespace ContaOnline.UI.Web.Controllers
 
         public ContaCategoriaController()
         {
-            repositorio = AppHelper.ObterContaCategoriaRepository();            
+            repositorio = AppHelper.ObterContaCategoriaRepository();
         }
 
         // GET: ContaCategoriaController
@@ -22,10 +21,10 @@ namespace ContaOnline.UI.Web.Controllers
             if (usuario == null) return RedirectToAction("Login", "App");
 
             var lista = repositorio.ObterTodos(usuario.Id);
-            return View(lista);            
+            return View(lista);
         }
 
-       
+
         // GET: ContaCategoriaController/Create
         public ActionResult Incluir()
         {
