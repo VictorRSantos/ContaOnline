@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ContaOnline.Domain\ContaOnline.Domain.csproj" />
+    <ProjectReference Include="..\ContaOnline.Repository\ContaOnline.Repository.csproj" />
+    <ProjectReference Include="..\ContaOnline.UI.Web\ContaOnline.UI.Web.csproj" />
+  </ItemGroup>
+
 </Project>

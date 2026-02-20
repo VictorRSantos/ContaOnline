@@ -26,10 +26,8 @@ namespace ContaOnline.UI.Web.Controllers
             }
 
             var viewModel = new ContaListViewModel();
-            //viewModel.ContaList = _contaRepository.ObterPorUsuario(_usuario.Id).ToList();
-            viewModel.Filtro.DataInicial = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            viewModel.Filtro.DataFinal = DateTime.Now;
-            
+            viewModel.Filtro.UsuarioId = _usuario.Id;
+            viewModel.ContaList = _contaRepository.ObterPorUsuario(_usuario.Id).ToList();
             PreencherContaListViewModel(viewModel);
 
             return View(viewModel);
