@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.14.36121.58
+# Visual Studio Version 18
+VisualStudioVersion = 18.4.11513.90 insiders
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaOnline.Domain", "ContaOnline.Domain\ContaOnline.Domain.csproj", "{1C72F472-72C4-4314-81FA-56282DFDA22D}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaOnline.UI.Web", "ContaOnline.UI.Web\ContaOnline.UI.Web.csproj", "{2632FA89-6B4F-40C2-9D18-3D4311695287}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContaOnline.Tests", "ContaOnline.Tests\ContaOnline.Tests.csproj", "{BA422448-081A-4447-AD1D-B900A72A16F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExemploWinClient", "ExemploWinClient\ExemploWinClient.csproj", "{D15978EE-0D4A-40C4-BF65-E7D652CB4D40}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{BA422448-081A-4447-AD1D-B900A72A16F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA422448-081A-4447-AD1D-B900A72A16F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA422448-081A-4447-AD1D-B900A72A16F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15978EE-0D4A-40C4-BF65-E7D652CB4D40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15978EE-0D4A-40C4-BF65-E7D652CB4D40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15978EE-0D4A-40C4-BF65-E7D652CB4D40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15978EE-0D4A-40C4-BF65-E7D652CB4D40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
